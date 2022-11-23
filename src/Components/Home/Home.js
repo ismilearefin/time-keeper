@@ -3,6 +3,7 @@ import Advertise from './AdvertiseSec/Advertise';
 import Categories from './Categories/Categories';
 import Hero from './Hero/Hero';
 import InfoSec from './InfoSec/InfoSec';
+import PremiumSec from './PremiumSec/PremiumSec';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <InfoSec></InfoSec>
             <Advertise></Advertise>
             <Categories></Categories>
+            <PremiumSec></PremiumSec>
         </div>
     );
 };
