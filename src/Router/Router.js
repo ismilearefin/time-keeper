@@ -4,6 +4,7 @@ import Login from "../Components/Login/Login";
 import MainRoute from "../Components/MainRoute/MainRoute";
 import ShowCategory from "../Components/ShowCategory/ShowCategory";
 import Signup from "../Components/Signup/Signup";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
         },
         {
           path:'/category/:name',
-          element: <ShowCategory></ShowCategory>,
+          element: <PrivateRoute><ShowCategory></ShowCategory></PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/categoris/${params.name}`)
         },
       ]
