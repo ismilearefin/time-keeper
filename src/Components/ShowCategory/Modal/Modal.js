@@ -5,8 +5,7 @@ import toast from 'react-hot-toast';
 
 const Modal = ({productInfo,setmodal}) => {
     const {user} = useContext(Authcontext);
-    const {pro_name,resale_price} = productInfo;
-
+    const {pro_name,resale_price,img,_id} = productInfo;
     function handleProductModal(e){
         e.preventDefault();
         const form = e.target;
@@ -17,13 +16,16 @@ const Modal = ({productInfo,setmodal}) => {
         const number = form.number.value;
         const location = form.location.value;
 
+
         const BookedProduct = {
+            _id,
             name,
             email, 
             itemName,
             price,
             number,
             location,
+            img
         }
         // console.log(BookedProduct)
 
@@ -56,7 +58,7 @@ const Modal = ({productInfo,setmodal}) => {
                 ✕
             </label>
             <h3 className="text-lg text-center  font-bold">
-                YOUR PRODUCT {pro_name}
+                YOUR PRODUCT ID : {_id}
             </h3>
             <form onSubmit={(e)=>handleProductModal(e)}>
                 <label><span className="text-black">Your name</span></label>

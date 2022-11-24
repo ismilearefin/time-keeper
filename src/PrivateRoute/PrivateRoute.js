@@ -12,7 +12,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
     if(loading){
         return (<div className='flex justify-center items-center min-h-screen'><RotatingLines
-        strokeColor="grey"
+        strokeColor="white"
         strokeWidth="5"
         animationDuration="0.75"
         width="96"

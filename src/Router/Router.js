@@ -1,4 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
+import Addproducts from "../Components/DashboardRoute/Addproducts/Addproducts";
+import DashboardRoute from "../Components/DashboardRoute/DashboardRoute";
+import Myorders from "../Components/DashboardRoute/Myorders/Myorders";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import MainRoute from "../Components/MainRoute/MainRoute";
@@ -20,7 +23,38 @@ export const router = createBrowserRouter([
           path:'/category/:name',
           element: <PrivateRoute><ShowCategory></ShowCategory></PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/categoris/${params.name}`)
+        }
+       
+      ]
+    },
+    {
+      path : '/dasboard',
+      element: <PrivateRoute><DashboardRoute></DashboardRoute></PrivateRoute>,
+      children:[
+        {
+          path: '/dasboard/myorders',
+          element:<Myorders></Myorders>
         },
+        {
+          path: '/dasboard/addproduct',
+          element:<Addproducts></Addproducts>
+        },
+        {
+          path:'/dasboard/myproducts',
+          element:<p>my products</p>
+        },
+        {
+          path:'/dasboard/allseller',
+          element:<p>all sellers</p>
+        },
+        {
+          path:'/dasboard/allbuyers',
+          element:<p>All buyers</p>
+        },
+        {
+          path:'/dasboard/reporteditem',
+          element:<p>Reported Items</p>
+        }
       ]
     },
     {
