@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Authcontext } from "../../Contextprovidor/Contextprovidor";
 
 const Navbar = () => {
+  const {user,logout} = useContext(Authcontext);
+
+  function handleDelete(){
+    return  logout()
+  }
+
+console.log(user)
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar">
@@ -36,9 +45,15 @@ const Navbar = () => {
                 Blog
               </Link>
             </li>
+            {user ?
             <li>
-              <Link>Item 3</Link>
+              <button onClick={handleDelete}>LogOut</button>
             </li>
+            :
+            <li>
+              <Link to='/login'>LogIn</Link>
+            </li>
+          }
           </ul>
           </div>
         </div>
@@ -54,9 +69,15 @@ const Navbar = () => {
                 Blog
               </Link>
             </li>
+            {user ?
             <li>
-              <Link>Login</Link>
+              <button onClick={handleDelete}>LogOut</button>
             </li>
+            :
+            <li>
+            <Link to='/login'>LogIn</Link>
+            </li> 
+          }
         </ul>
       </div>
     </div>

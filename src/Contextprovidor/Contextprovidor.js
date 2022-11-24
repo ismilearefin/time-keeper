@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 export const Authcontext = createContext();
 const auth = getAuth(app);
 const Contextprovidor = ({children}) => {
-    const [user,setuser] = useState([]);
+    const [user,setuser] = useState(null);
     const [loading, setloading] = useState(true);
 
     function signin(email,password){
@@ -44,6 +44,7 @@ const Contextprovidor = ({children}) => {
         signOut(auth).then(() => {
             // Sign-out successful.
             alert('logout sucessfully')
+            setuser(null)
             Navigate('/')
           }).catch((error) => {
             // An error happened.
