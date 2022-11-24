@@ -1,6 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Categories = () => {
+    const CategoriesName = [
+        {Category : "Mens"},
+        {Category : "Ladies"},
+        {Category : "Kids"},
+        {Category : "Premium"},
+    ]
     return (
         <div 
         className='flex w-full hero min-h-screen' 
@@ -12,12 +19,11 @@ const Categories = () => {
                 </h1>
             </div>
             <div className='w-1/2 min-h-screen grid grid-cols-2'>
-                <div className='h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-2xl  hover:text-white'>
-                    <h1>PREMIUM</h1>
-                </div>
-                <div className='h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-2xl  hover:text-white'>KIDS</div>
-                <div className='h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-2xl  hover:text-white'>MENS</div>
-                <div className='h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-2xl  hover:text-white'>LADIES</div>
+                {
+                    CategoriesName.map((Category , i)=> <Link to={`/category/${Category.Category}`} key={i} className='h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-2xl  hover:text-white'>
+                    {Category.Category}
+                </Link> )
+                }
             </div>
         </div>
     );

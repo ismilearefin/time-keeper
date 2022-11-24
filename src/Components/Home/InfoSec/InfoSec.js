@@ -6,9 +6,7 @@ const InfoSec = () => {
             <p>
             We care about your preferences, and that's why we find the best watches for you. We sell used watches here since 2016.<br>
             </br>
-            <p>
             Stay with TimeKeeper
-            </p>
             </p>
             <div>
             <div>
