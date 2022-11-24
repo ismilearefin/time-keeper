@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Modal from "./Modal/Modal";
+import { Toaster } from 'react-hot-toast';
+
 
 const ShowCategory = () => {
+    
+    // fix reload eassu..........
+
     const products = useLoaderData();
     const [productInfo , setProductInfo] = useState([])
-    console.log(productInfo)
+    const [modal, setmodal] = useState(true)
     function handleModal(product){
         setProductInfo(product)
+        console.log(productInfo)
     }
     
     return (
@@ -32,15 +38,18 @@ const ShowCategory = () => {
                 <div className="badge  w-full rounded-none">Resale Price : {product.resale_price} </div>
                 <div className="badge  w-full rounded-none">Year of use : {product.year_of_use} </div>
                 <div className="badge  w-full rounded-none">Location : {product.location} </div>
-                <label htmlFor="my-modal-3" onClick={()=>handleModal(product)} className="btn btn-primary btn-sm  bg-black text-white rounded-none w-full">BOOK NOW</label>
+                <label htmlFor="my-modal-3" onClick={()=>handleModal(product)} className={` ${productInfo?._id === product._id && 'btn-disabled text-red-500'}   btn btn-primary btn-sm  bg-black text-white rounded-none w-full`}>{productInfo?._id === product._id ? "BOOKED" :"BOOK NOW"}</label>
                 </div>
             </div>
+            <Toaster/>
             </div>
         ))}
         </div>
-        <Modal 
+        { modal &&
+            <Modal 
         productInfo={productInfo}
-        ></Modal>
+        setmodal={setmodal}
+        ></Modal>}
         </div>
     );
 };

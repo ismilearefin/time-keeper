@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { Authcontext } from "../../../Contextprovidor/Contextprovidor";
+import toast from 'react-hot-toast';
 
-const Modal = ({productInfo}) => {
+
+const Modal = ({productInfo,setmodal}) => {
     const {user} = useContext(Authcontext);
     const {pro_name,resale_price} = productInfo;
 
@@ -23,7 +25,7 @@ const Modal = ({productInfo}) => {
             number,
             location,
         }
-        console.log(BookedProduct)
+        // console.log(BookedProduct)
 
         fetch('http://localhost:5000/bookedproduct',{
             method: "POST",
@@ -34,7 +36,10 @@ const Modal = ({productInfo}) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            if(data.acknowledged){
+                toast.success('Your Product is Booked')
+            }
+            setmodal(false)
         })
     }
 
@@ -70,6 +75,7 @@ const Modal = ({productInfo}) => {
             </form>
             </div>
         </div>
+        
         </div>
     );
 };
