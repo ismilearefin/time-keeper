@@ -7,7 +7,7 @@ const Advertise = () => {
     OUR <span className="text-red-600">HOT DEALS</span>
     </p>
      <div className="md:flex justify-center items-center my-4 gap-5 ">
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 bg-base-100 shadow-xl rounded-none">
         <figure>
           <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
         </figure>
@@ -23,7 +23,7 @@ const Advertise = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 bg-base-100 shadow-xl rounded-none">
         <figure>
           <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
         </figure>
@@ -39,7 +39,7 @@ const Advertise = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 bg-base-100 shadow-xl rounded-none">
         <figure>
           <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
         </figure>

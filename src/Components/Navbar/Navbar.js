@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar">
-            <Link className=" normal-case text-2xl font-bold hidden lg:block  lg:navbar-start ">TimeKeeper</Link>
+            <Link to='/' className=" normal-case text-2xl font-bold hidden lg:block  lg:navbar-start ">TimeKeeper</Link>
         <div className="dropdown navbar-start">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -42,7 +42,7 @@ const Navbar = () => {
           </ul>
           </div>
         </div>
-        <Link className="normal-case lg:hidden text-xl navbar-end">TimeKeeper</Link>
+        <Link to='/' className="normal-case lg:hidden text-xl navbar-end">TimeKeeper</Link>
       </div>
       <div className="navbar-end hidden lg:flex ">
         <ul className="menu menu-horizontal p-0">
