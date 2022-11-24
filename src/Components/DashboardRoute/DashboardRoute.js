@@ -18,6 +18,7 @@ const DashboardRoute = () => {
                 <ul className="menu p-4 w-72 bg-white font-bold text-base-content">
                 <li><Link to='/dasboard/myorders'>My Orders</Link></li>
                 <li><Link to='/dasboard/addproduct'>Add Product</Link></li>
+                <li><Link to='/dasboard/myproducts'>My Products</Link></li>
                 </ul>
             </div>
             </div>

@@ -2,6 +2,7 @@ import {createBrowserRouter} from "react-router-dom";
 import Addproducts from "../Components/DashboardRoute/Addproducts/Addproducts";
 import DashboardRoute from "../Components/DashboardRoute/DashboardRoute";
 import Myorders from "../Components/DashboardRoute/Myorders/Myorders";
+import MyProducts from "../Components/DashboardRoute/MyProducts/MyProducts";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import MainRoute from "../Components/MainRoute/MainRoute";
@@ -24,7 +25,6 @@ export const router = createBrowserRouter([
           element: <PrivateRoute><ShowCategory></ShowCategory></PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/categoris/${params.name}`)
         }
-       
       ]
     },
     {
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
         },
         {
           path:'/dasboard/myproducts',
-          element:<p>my products</p>
+          element:<MyProducts></MyProducts>
         },
         {
           path:'/dasboard/allseller',
