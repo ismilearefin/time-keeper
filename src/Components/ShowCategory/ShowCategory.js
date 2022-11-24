@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Modal from "./Modal/Modal";
 
 const ShowCategory = () => {
     const products = useLoaderData();
-    console.log(products)
+    const [productInfo , setProductInfo] = useState([])
+    console.log(productInfo)
+    function handleModal(product){
+        setProductInfo(product)
+    }
+    
     return (
         <div className="bg-white">
         <h1 className="text-4xl font-light text-center pt-10">{products[0]?.category} Category</h1>
@@ -26,12 +32,15 @@ const ShowCategory = () => {
                 <div className="badge  w-full rounded-none">Resale Price : {product.resale_price} </div>
                 <div className="badge  w-full rounded-none">Year of use : {product.year_of_use} </div>
                 <div className="badge  w-full rounded-none">Location : {product.location} </div>
-                <button className="btn btn-primary btn-sm  bg-black text-white rounded-none w-full">BOOK NOW</button>
+                <label htmlFor="my-modal-3" onClick={()=>handleModal(product)} className="btn btn-primary btn-sm  bg-black text-white rounded-none w-full">BOOK NOW</label>
                 </div>
             </div>
             </div>
         ))}
         </div>
+        <Modal 
+        productInfo={productInfo}
+        ></Modal>
         </div>
     );
 };
