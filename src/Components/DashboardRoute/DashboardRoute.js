@@ -1,9 +1,23 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { Authcontext } from '../../Contextprovidor/Contextprovidor';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
 const DashboardRoute = () => {
+    const {user} = useContext(Authcontext)
+    const {data, isLoading} = useQuery({
+        queryKey : ['users', user.email],
+        queryFn : () => fetch(`http://localhost:5000/users?email=${user.email}`)
+        .then(res => res.json())
+        
+    })
+
+    if(isLoading){
+        return <p>Loading.....</p>
+    }
+console.log(data)
 
     return (
         <div>
@@ -16,11 +30,20 @@ const DashboardRoute = () => {
             <div className="drawer-side">
                 <label htmlFor="dashboard-drawer" className="drawer-overlay"></label> 
                 <ul className="menu p-4 w-72 bg-white font-bold text-base-content">
-                <li><Link to='/dasboard/myorders'>My Orders</Link></li>
-                <li><Link to='/dasboard/addproduct'>Add Product</Link></li>
+                { data[0]?.userRole === 'Buyer' &&
+                    <li><Link to='/dasboard/myorder'>My Orders</Link></li>}
+                { data[0]?.userRole === 'Seller' &&
+                <>
                 <li><Link to='/dasboard/myproducts'>My Products</Link></li>
+                <li><Link to='/dasboard/addproduct'>Add Product</Link></li>
+                </>
+                }
+                { data[0]?.userRole === 'Admin' &&
+                <>
                 <li><Link to='/dasboard/allseller'>All Seller</Link></li>
                 <li><Link to='/dasboard/allbuyers'>All Buyer</Link></li>
+                </>
+                }
                 </ul>
             </div>
             </div>

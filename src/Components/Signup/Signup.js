@@ -118,6 +118,7 @@ const Signup = () => {
                     <span className="label-text">Sign-up as..</span>
                     </label>
                     <select name="userRole" className="select select-bordered w-full max-w-xs">
+                    <option disabled selected>Your role ?</option>
                     <option value="Buyer">Buyer</option>
                     <option value="Seller">Seller</option>
                     </select>

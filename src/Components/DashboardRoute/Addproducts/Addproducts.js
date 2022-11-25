@@ -25,7 +25,7 @@ const Addproducts = () => {
         const img = form.img.value;
 
         const addProduct = {
-            email : user.email,
+            email : user?.email,
             pro_name,
             location,
             orginal_price,
@@ -76,9 +76,10 @@ const Addproducts = () => {
                 <label><span>Years of use</span></label>
             <input type="number" name='year_of_use' className="input input-bordered w-full mb-2" />
                 <label><span>Seller Name</span></label>
-            <input type="text" name='seller_name' value={user.displayName} className="input input-bordered w-full mb-2" />
+            <input type="text" name='seller_name' value={user?.displayName} className="input input-bordered w-full mb-2" />
                 <label><span>Condition</span></label>
                 <select name='condition' className="select select-bordered w-full mb-2">
+                <option disabled selected>Product condition</option>
                     <option value="Excellent">Excellent</option>
                     <option value="Good">Good</option>
                     <option value="Fair">Fair</option>
@@ -89,6 +90,7 @@ const Addproducts = () => {
             <input type="number" name='year_of_purchase' className="input input-bordered w-full mb-2" />    
                 <label><span>Category</span></label>
                 <select name='category' className="select select-bordered w-full mb-2">
+                <option disabled selected>Choose your product category ?</option>
                     <option value="Mens">Mens</option>
                     <option value="Ladies">Ladies</option>
                     <option value="Kids">Kids</option>
