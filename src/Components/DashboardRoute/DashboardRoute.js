@@ -19,6 +19,8 @@ const DashboardRoute = () => {
                 <li><Link to='/dasboard/myorders'>My Orders</Link></li>
                 <li><Link to='/dasboard/addproduct'>Add Product</Link></li>
                 <li><Link to='/dasboard/myproducts'>My Products</Link></li>
+                <li><Link to='/dasboard/allseller'>All Seller</Link></li>
+                <li><Link to='/dasboard/allbuyers'>All Buyer</Link></li>
                 </ul>
             </div>
             </div>
