@@ -25,7 +25,7 @@ const ShowCategory = () => {
         products.map((product) => (
             <div key={product._id} className="card text-center w-96 bg-base-100 shadow-xl rounded-none my-10">
             <figure>
-                <img src={product.img} alt="Shoes" />
+                <img className="w-full h-72" src={product.img} alt="Shoes" />
             </figure>
             <div className="card-body">
                 <h2 className="card-title">

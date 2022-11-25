@@ -98,9 +98,7 @@ function handleAdvertise(id){
                     <td><button onClick={()=>handleDelete(product._id)} className='btn bg-rose-800 btn-xs text-white'>X</button></td>
                     <th>
                         {
-                            product?.advertise ?
-                           <button className='btn btn-xs text-rose-800'>Advertised</button>
-                           : 
+                          !product?.status   &&  
                            <button onClick={()=>handleAdvertise(product._id)} className="btn btn-xs text-sky-400">Advertise</button>
                         }
                     </th>
