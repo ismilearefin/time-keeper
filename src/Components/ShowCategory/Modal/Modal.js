@@ -9,10 +9,7 @@ const Modal = ({productInfo,setmodal}) => {
     function handleProductModal(e){
         e.preventDefault();
         const form = e.target;
-        // const name = form.name.value;
         const email = form.email.value;
-        // const itemName = form.itemName.value;
-        // const price = form.price.value;
         const number = form.number.value;
         const location = form.location.value;
 
