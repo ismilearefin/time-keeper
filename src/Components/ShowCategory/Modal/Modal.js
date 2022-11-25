@@ -27,7 +27,6 @@ const Modal = ({productInfo,setmodal}) => {
             location,
             img
         }
-        // console.log(BookedProduct)
 
         fetch('http://localhost:5000/bookedproduct',{
             method: "POST",
@@ -40,6 +39,8 @@ const Modal = ({productInfo,setmodal}) => {
         .then(data => {
             if(data.acknowledged){
                 toast.success('Your Product is Booked')
+            }else{
+                toast.error('Already Booked')
             }
             setmodal(false)
         })

@@ -11,10 +11,10 @@ const Login = () => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
-        const userPro = form.user.value;
+        const userRole = form.userRole.value;
         const name = form.name.value;
         const password = form.password.value;
-        console.log(email, userPro, name,password);
+        console.log(email, userRole, name,password);
        
         // Login with email and password
         login(email, password)
@@ -65,7 +65,7 @@ const Login = () => {
                     <label className="label">
                     <span className="label-text">Login as..</span>
                     </label>
-                    <select name="user" className="select select-bordered w-full max-w-xs">
+                    <select name="userRole" className="select select-bordered w-full max-w-xs">
                     <option value="Buyer">Buyer</option>
                     <option value="Seller">Seller</option>
                     </select>

@@ -1,27 +1,30 @@
 import React, { useContext } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { Authcontext } from "../../Contextprovidor/Contextprovidor";
 
 const Signup = () => {
-    const {signin,updateUserProfile} = useContext(Authcontext)
+    const {signin,updateUserProfile,googlesignup} = useContext(Authcontext)
     const navigate = useNavigate()
 
     function handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
-        const userPro = form.user.value;
+        const userRole = form.userRole.value;
         const name = form.name.value;
         const password = form.password.value;
-        console.log(email, userPro,name,password);
+        console.log(email, userRole,name,password);
         signin(email,password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            toast.success('User Created Successfully')
             updateUserProfile(name)
             // ...
+            saveUserInfo(name,email,userRole)
             console.log(user)
-            navigate('/')
+            
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -29,6 +32,46 @@ const Signup = () => {
             // ..
           });
     }
+
+    function handleGoogleSignup(name, email, userRole='Buyer'){
+
+        googlesignup()
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            // The signed-in user info.
+            const user = result.user;
+            console.log(user)
+            saveUserInfo(user.displayName,user.email,userRole)
+            // ...
+          }).catch((error) => {
+            // Handle Errors here.
+            const errorMessage = error.message;
+            console.log(errorMessage)
+          });
+    }
+
+
+    const saveUserInfo =(name, email, userRole)=>{
+        const userInfo = {
+            name, 
+            email, 
+            userRole
+        }
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers:{
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            navigate('/')
+        })
+    }
+
+
 
     return (
         <div>
@@ -74,7 +117,7 @@ const Signup = () => {
                     <label className="label">
                     <span className="label-text">Sign-up as..</span>
                     </label>
-                    <select name="user" className="select select-bordered w-full max-w-xs">
+                    <select name="userRole" className="select select-bordered w-full max-w-xs">
                     <option value="Buyer">Buyer</option>
                     <option value="Seller">Seller</option>
                     </select>
@@ -85,8 +128,10 @@ const Signup = () => {
                     <button className="btn btn-primary">Sign Up</button>
                 </div>
                 </form>
+                <button onClick={()=>handleGoogleSignup()} className="btn btn-primary">Google</button>
             </div>
             </div>
+            <Toaster></Toaster>
         </div>
         </div>
     );

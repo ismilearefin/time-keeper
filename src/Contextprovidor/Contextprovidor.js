@@ -35,10 +35,9 @@ const Contextprovidor = ({children}) => {
           
     },[])
 
-    function updateUserProfile (name,image){
+    function updateUserProfile (name){
         updateProfile(auth.currentUser, {
-            displayName: name,
-            photoURL: image
+            displayName: name
           }).then(() => {
             // Profile updated!
             // ...
