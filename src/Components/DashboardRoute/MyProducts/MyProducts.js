@@ -4,16 +4,18 @@ import {
   } from '@tanstack/react-query'
 import { Authcontext } from '../../../Contextprovidor/Contextprovidor';
 import {RotatingLines } from  'react-loader-spinner'
+import toast from 'react-hot-toast';
 
 
 const MyProducts = () => {
     const {user} = useContext(Authcontext)
 
-    const {data , isLoading} = useQuery({
+    const {data, isLoading, refetch}= useQuery({
         queryKey:['myproducts', user.email],
-        queryFn:() => fetch(`http://localhost:5000/myproducts?email=${user.email}`)
+        queryFn: () => fetch(`http://localhost:5000/allproducts/myproducts?email=${user.email}`)
         .then(res => res.json())
     })
+
 
     if(isLoading){
         return (<div className='flex justify-center items-center min-h-screen'><RotatingLines
@@ -25,6 +27,33 @@ const MyProducts = () => {
         /></div>)
     }
 console.log(data)
+
+function handleDelete(_id){
+    fetch(`http://localhost:5000/allproducts/${_id}`, {
+            method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.acknowledged){
+            toast.success('Deleted successfully')
+            refetch()
+        }
+    })
+}
+
+function handleAdvertise(id){
+    fetch(`http://localhost:5000/allproducts/advertise/${id}`, {
+        method : 'PUT'
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.acknowledged){
+            toast.success('Advertised Mood on')
+            refetch()
+        }
+    })
+
+}
 
     return (
         <div>
@@ -45,7 +74,12 @@ console.log(data)
             {
                 data.map(product => <tr key={product._id}>
                     <th>
-                        <p className='text-green-600'>Available</p>
+                        {
+                            product?.status ? 
+                            <p className='text-rose-600'>Sold</p>
+                            :
+                            <p className='text-green-600'>Available</p>
+                        }
                     </th>
                     <td>
                     <div className="flex items-center space-x-3">
@@ -61,9 +95,14 @@ console.log(data)
                     <br/>
                     <span className="badge badge-ghost badge-sm">${product.resale_price}</span>
                     </td>
-                    <td><button className='btn btn-ghost btn-xs text-rose-600'>X</button></td>
+                    <td><button onClick={()=>handleDelete(product._id)} className='btn bg-rose-800 btn-xs text-white'>X</button></td>
                     <th>
-                    <button className="btn btn-ghost btn-xs text-sky-400">Advertise</button>
+                        {
+                            product?.advertise ?
+                           <button className='btn btn-xs text-rose-800'>Advertised</button>
+                           : 
+                           <button onClick={()=>handleAdvertise(product._id)} className="btn btn-xs text-sky-400">Advertise</button>
+                        }
                     </th>
                 </tr> )
             }
