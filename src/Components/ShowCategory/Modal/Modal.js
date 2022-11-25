@@ -5,32 +5,28 @@ import toast from 'react-hot-toast';
 
 const Modal = ({productInfo,setmodal}) => {
     const {user} = useContext(Authcontext);
-    const {pro_name,resale_price,img,_id} = productInfo;
+    const {pro_name,resale_price,_id} = productInfo;
     function handleProductModal(e){
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value;
+        // const name = form.name.value;
         const email = form.email.value;
-        const itemName = form.itemName.value;
-        const price = form.price.value;
+        // const itemName = form.itemName.value;
+        // const price = form.price.value;
         const number = form.number.value;
         const location = form.location.value;
 
 
         const BookedProduct = {
             _id,
-            name,
-            email, 
-            itemName,
-            price,
+            email,
             number,
             location,
-            img
         }
 
-        fetch('http://localhost:5000/bookedproduct',{
-            method: "POST",
-            headers:{
+        fetch(`http://localhost:5000/allproducts/${_id}`, {
+            method: 'PUT',
+            headers: {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(BookedProduct)
@@ -38,12 +34,31 @@ const Modal = ({productInfo,setmodal}) => {
         .then(res => res.json())
         .then(data => {
             if(data.acknowledged){
-                toast.success('Your Product is Booked')
-            }else{
-                toast.error('Already Booked')
-            }
-            setmodal(false)
+                        toast.success('Your Product is Booked')
+                    }else{
+                        toast.error('Already Booked')
+                    }
+                    setmodal(false)
         })
+
+
+
+        // fetch('http://localhost:5000/bookedproduct',{
+        //     method: "POST",
+        //     headers:{
+        //         'content-type' : 'application/json'
+        //     },
+        //     body: JSON.stringify(BookedProduct)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     if(data.acknowledged){
+        //         toast.success('Your Product is Booked')
+        //     }else{
+        //         toast.error('Already Booked')
+        //     }
+        //     setmodal(false)
+        // })
     }
 
 

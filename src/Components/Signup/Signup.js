@@ -33,7 +33,7 @@ const Signup = () => {
           });
     }
 
-    function handleGoogleSignup(name, email, userRole='Buyer'){
+    function handleGoogleSignup( userRole='Buyer'){
 
         googlesignup()
         .then((result) => {

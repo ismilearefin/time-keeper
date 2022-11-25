@@ -15,7 +15,7 @@ const ShowCategory = () => {
         setProductInfo(product)
         console.log(productInfo)
     }
-    
+    console.log(products)
     return (
         <div className="bg-white">
         <h1 className="text-4xl font-light text-center pt-10">{products[0]?.category} Category</h1>
@@ -38,7 +38,7 @@ const ShowCategory = () => {
                 <div className="badge  w-full rounded-none">Resale Price : {product.resale_price} </div>
                 <div className="badge  w-full rounded-none">Year of use : {product.year_of_use} </div>
                 <div className="badge  w-full rounded-none">Location : {product.location} </div>
-                <label htmlFor="my-modal-3" onClick={()=>handleModal(product)} className={'btn btn-primary btn-sm  bg-black text-white rounded-none w-full'}>BOOK NOW</label>
+                <label htmlFor="my-modal-3" onClick={()=>handleModal(product)} className={'btn btn-primary btn-sm  bg-black text-white rounded-none w-full'}>{product?.status ? product.status : "BOOK NOW"}</label>
                 </div>
             </div>
             <Toaster/>

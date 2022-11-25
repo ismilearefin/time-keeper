@@ -11,8 +11,8 @@ const Myorders = () => {
     // const queryClient = useQueryClient()
 
     const {data, isLoading}= useQuery({
-        queryKey:['bookedproduct', user.email],
-        queryFn: () => fetch(`http://localhost:5000/bookedproduct?email=${user.email}`)
+        queryKey:['allproducts', user.email],
+        queryFn: () => fetch(`http://localhost:5000/allproducts?email=${user.email}`)
         .then(res => res.json())
     })
 
@@ -38,8 +38,8 @@ console.log(data)
                         <th>
                         </th>
                         <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Product</th>
+                        <th>Price</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -59,7 +59,7 @@ console.log(data)
                                 </div>
                                 </td>
                                 <td>
-                                {bookedProduct.itemName}
+                                {bookedProduct.pro_name}
                                 </td>
                                 <td>$ {bookedProduct.price}</td>
                                 <th>
