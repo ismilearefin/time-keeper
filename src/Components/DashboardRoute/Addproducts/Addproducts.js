@@ -2,11 +2,14 @@ import React, { useContext } from 'react';
 import { Authcontext } from '../../../Contextprovidor/Contextprovidor';
 import toast from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Addproducts = () => {
     const {user} = useContext(Authcontext)
+    const navigate = useNavigate();
+    const current = new Date();
     // need user email and send with product details..
     function handleAddProduct(e){
         e.preventDefault();
@@ -23,9 +26,10 @@ const Addproducts = () => {
         const category = form.category.value;
         const dis = form.dis.value;
         const img = form.img.value;
-
+        
+        const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
         const addProduct = {
-            email : user?.email,
+            email : user.email,
             pro_name,
             location,
             orginal_price,
@@ -37,6 +41,7 @@ const Addproducts = () => {
             year_of_purchase,
             category,
             dis,
+            date,
             img
         }
         console.log(addProduct)
@@ -53,6 +58,7 @@ const Addproducts = () => {
             if(data.acknowledged){
                 form.reset()
                 toast.success('Your Product is Booked')
+                navigate('/dasboard/myproducts')
             }
         })
 

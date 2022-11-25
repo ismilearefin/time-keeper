@@ -41,24 +41,6 @@ const Modal = ({productInfo,setmodal}) => {
                     setmodal(false)
         })
 
-
-
-        // fetch('http://localhost:5000/bookedproduct',{
-        //     method: "POST",
-        //     headers:{
-        //         'content-type' : 'application/json'
-        //     },
-        //     body: JSON.stringify(BookedProduct)
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     if(data.acknowledged){
-        //         toast.success('Your Product is Booked')
-        //     }else{
-        //         toast.error('Already Booked')
-        //     }
-        //     setmodal(false)
-        // })
     }
 
 

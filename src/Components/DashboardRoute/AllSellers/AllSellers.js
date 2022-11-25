@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { RotatingLines } from 'react-loader-spinner';
 
 const AllSellers = () => {
-
     const {data, isLoading, refetch} = useQuery({
         queryKey : ['allseller'],
         queryFn : () => fetch('http://localhost:5000/users/allseller')
@@ -30,8 +30,23 @@ const AllSellers = () => {
             console.log(data)
             refetch()
         })
-
-
+    }
+    
+    function handleVerify(email){
+        fetch(`http://localhost:5000/allproducts/${email}`,{
+            method:'PUT',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify()
+        })
+        .then(res => res.json())
+        .then(data=> {
+            if(data.acknowledged){
+                refetch()
+                toast.success('Seller is now Verified ')
+            }
+        })
     }
 
 
@@ -46,6 +61,7 @@ const AllSellers = () => {
             <th>Name</th>
             <th>email</th>
             <th>Delete</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -57,11 +73,15 @@ const AllSellers = () => {
                 <td>
                 <button onClick={()=>handleDelete(seller._id)} className='btn bg-rose-800 btn-sm'>X</button>
                 </td>
+                <td>
+                <button onClick={()=>handleVerify(seller.email)} className='btn bg-sky-500 text-white btn-sm'>verify</button>
+            </td>
             </tr>)
         }
         </tbody>
     </table>
     </div>
+    <Toaster></Toaster>
         </div>
     );
 };
