@@ -20,7 +20,7 @@ console.log(data)
       <p className="text-4xl font-bold mb-10">
       OUR <span className="text-red-600">HOT DEALS</span>
       </p>
-      <div className="md:flex justify-center items-center my-4 gap-5 ">
+      <div className="md:grid grid-cols-3 justify-center items-center my-4 gap-5 ">
         {
           data.map(product => <div key={product._id} className="card w-96 bg-base-100 shadow-xl rounded-none">
           <figure>

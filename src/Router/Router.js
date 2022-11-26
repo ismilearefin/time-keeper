@@ -13,7 +13,10 @@ import MainRoute from "../Components/MainRoute/MainRoute";
 import PageNotFound from "../Components/PageNotFound/PageNotFound";
 import ShowCategory from "../Components/ShowCategory/ShowCategory";
 import Signup from "../Components/Signup/Signup";
+import AdminPrivateRoute from "../PrivateRoute/AdminPrivateRoute/AdminPrivateRoute";
+import BuyerPrivateRoute from "../PrivateRoute/BuyerPrivateRoute/BuyerPrivateRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerPrivateRoute from "../PrivateRoute/SellerPrivateRoute/SellerPrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -42,27 +45,27 @@ export const router = createBrowserRouter([
       children:[
         {
           path: '/dasboard/myorder',
-          element:<Myorders></Myorders>
+          element:<BuyerPrivateRoute><Myorders></Myorders></BuyerPrivateRoute>
         },
         {
           path: '/dasboard/addproduct',
-          element:<Addproducts></Addproducts>
+          element:<SellerPrivateRoute><Addproducts></Addproducts></SellerPrivateRoute>
         },
         {
           path:'/dasboard/myproducts',
-          element:<MyProducts></MyProducts>
+          element:<SellerPrivateRoute><MyProducts></MyProducts></SellerPrivateRoute>
         },
         {
           path:'/dasboard/allseller',
-          element:<AllSellers></AllSellers>
+          element:<AdminPrivateRoute><AllSellers></AllSellers></AdminPrivateRoute>
         },
         {
           path:'/dasboard/allbuyers',
-          element:<AllBuyer></AllBuyer>
+          element:<AdminPrivateRoute><AllBuyer></AllBuyer></AdminPrivateRoute>
         },
         {
           path:'/dasboard/reporteditems',
-          element:<ReportedItems></ReportedItems>
+          element:<AdminPrivateRoute><ReportedItems></ReportedItems></AdminPrivateRoute>
         }
       ]
     },

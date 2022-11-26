@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { Authcontext } from "../../Contextprovidor/Contextprovidor";
 
 const Login = () => {
-    const {login} = useContext(Authcontext)
+    const {login,googlesignup} = useContext(Authcontext)
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
     const navigate = useNavigate()
@@ -12,24 +13,40 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const userRole = form.userRole.value;
-        const name = form.name.value;
         const password = form.password.value;
-        console.log(email, userRole, name,password);
-       
-        // Login with email and password
-        login(email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
+        console.log(email, password, userRole);
+        
+            // Login with email and password
+            login(email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                toast.success(`Welcome back ${user.displayName}`)
+                navigate(from, {replace : true});
+                // ...
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                console.log(errorMessage)
+            });
+    }
+
+    function handleGooglesignUp(){
+        googlesignup()
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            // The signed-in user info.
+            const user = result.user;
             console.log(user)
-            
             navigate(from, {replace : true});
             // ...
-          })
-          .catch((error) => {
+          }).catch((error) => {
+            // Handle Errors here.
             const errorMessage = error.message;
-            console.log(errorMessage)
+            toast.error(errorMessage)
           });
+    
     }
 
     return (
@@ -70,14 +87,16 @@ const Login = () => {
                     <option value="Buyer">Buyer</option>
                     <option value="Seller">Seller</option>
                     </select>
-                    <label className="label"><span>Create account <Link to='/signup' className="link">Sign-Up</Link></span></label>
                 </div>
+                <label className="label"><span>Create account <Link to='/signup' className="link">Sign-Up</Link></span></label>
                 <div className="form-control mt-6">
                     <button className="btn btn-primary">Login</button>
                 </div>
                 </form>
+                    <button onClick={handleGooglesignUp} className="btn btn-primary">Google</button>
             </div>
             </div>
+            <Toaster/>
         </div>
         </div>
     );

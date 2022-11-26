@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Modal from "./Modal/Modal";
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { FaCheckCircle } from "react-icons/fa";
 
 
@@ -12,9 +12,31 @@ const ShowCategory = () => {
     
     function handleModal(product){
         setProductInfo([])
-      return setProductInfo(product)
+        return setProductInfo(product)
     }
 
+    function handleReportedItems (id){
+        fetch(`http://localhost:5000/allproducts/report/${id}`, {
+            method: 'PUT',
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body:JSON.stringify()
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Submit your report request')
+            }else{
+                toast.error('already reported')
+            }
+        })
+    }
+
+
+
+
+console.log(products)
     return (
         <div className="bg-white">
         <h1 className="text-4xl font-light text-center pt-10">{products[0]?.category} Category</h1>
@@ -41,11 +63,12 @@ const ShowCategory = () => {
                 </h2>
                 <p>{product?.dis.length > 40 ? product.dis.slice(0, 39) + '...' : product.dis}</p>
                 <div className="card-actions justify-between">
-                <div className="badge w-full rounded-none">Orginal Price : {product?.orinal_price} </div>
+                <div className="badge w-full rounded-none">Orginal Price : {product?.orginal_price} </div>
                 <div className="badge  w-full rounded-none">Resale Price : {product?.resale_price} </div>
                 <div className="badge  w-full rounded-none">Year of use : {product?.year_of_use} </div>
                 <div className="badge  w-full rounded-none">Location : {product?.location} </div>
                 <label htmlFor="my-modal-3" onClick={()=>handleModal(product)} className={'btn btn-primary btn-sm  bg-black text-white rounded-none w-full'}>{product?.status ? product.status : "BOOK NOW"}</label>
+                <button onClick={()=>handleReportedItems(product._id)} className="link text-rose-600 text-sm">Report</button>
                 </div>
             </div>
             <Toaster/>

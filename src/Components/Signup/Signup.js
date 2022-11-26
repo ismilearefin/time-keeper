@@ -28,7 +28,8 @@ const Signup = () => {
           })
           .catch((error) => {
             const errorMessage = error.message;
-            console.log(errorMessage)
+            toast.error(errorMessage)
+            // console.log(errorMessage)
             // ..
           });
     }
@@ -46,7 +47,7 @@ const Signup = () => {
           }).catch((error) => {
             // Handle Errors here.
             const errorMessage = error.message;
-            console.log(errorMessage)
+            toast.error(errorMessage)
           });
     }
 
