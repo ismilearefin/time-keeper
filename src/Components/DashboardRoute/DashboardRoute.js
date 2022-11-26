@@ -42,6 +42,7 @@ console.log(data)
                 <>
                 <li><Link to='/dasboard/allseller'>All Seller</Link></li>
                 <li><Link to='/dasboard/allbuyers'>All Buyer</Link></li>
+                <li><Link to='/dasboard/reporteditems'>Reported Item</Link></li>
                 </>
                 }
                 </ul>

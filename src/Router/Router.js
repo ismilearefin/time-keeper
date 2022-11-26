@@ -5,9 +5,11 @@ import AllSellers from "../Components/DashboardRoute/AllSellers/AllSellers";
 import DashboardRoute from "../Components/DashboardRoute/DashboardRoute";
 import Myorders from "../Components/DashboardRoute/Myorders/Myorders";
 import MyProducts from "../Components/DashboardRoute/MyProducts/MyProducts";
+import ReportedItems from "../Components/DashboardRoute/ReportedItems/ReportedItems";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import MainRoute from "../Components/MainRoute/MainRoute";
+import PageNotFound from "../Components/PageNotFound/PageNotFound";
 import ShowCategory from "../Components/ShowCategory/ShowCategory";
 import Signup from "../Components/Signup/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -54,8 +56,8 @@ export const router = createBrowserRouter([
           element:<AllBuyer></AllBuyer>
         },
         {
-          path:'/dasboard/reporteditem',
-          element:<p>Reported Items</p>
+          path:'/dasboard/reporteditems',
+          element:<ReportedItems></ReportedItems>
         }
       ]
     },
@@ -66,6 +68,10 @@ export const router = createBrowserRouter([
     {
       path:'/signup',
       element:<Signup></Signup>
+    },
+    {
+      path: '*',
+      element: <PageNotFound></PageNotFound>
     }
   ]);
 
