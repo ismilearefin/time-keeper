@@ -41,7 +41,7 @@ console.log(user)
               <Link to='/dasboard'>Dashboard</Link>
             </li>
             <li>
-              <Link>
+              <Link to='/blog'>
                 Blog
               </Link>
             </li>
@@ -65,7 +65,7 @@ console.log(user)
               <Link to='/dasboard'>Dashboard</Link>
             </li>
             <li >
-              <Link>
+              <Link to='/blog'>
                 Blog
               </Link>
             </li>
@@ -80,6 +80,7 @@ console.log(user)
           }
         </ul>
       </div>
+      
       <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +97,7 @@ console.log(user)
               />
             </svg>
           </label>
+    
     </div>
   );
 };

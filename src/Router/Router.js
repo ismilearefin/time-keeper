@@ -1,4 +1,5 @@
 import {createBrowserRouter} from "react-router-dom";
+import Blog from "../Components/Blog/Blog";
 import Addproducts from "../Components/DashboardRoute/Addproducts/Addproducts";
 import AllBuyer from "../Components/DashboardRoute/AllBuyer/AllBuyer";
 import AllSellers from "../Components/DashboardRoute/AllSellers/AllSellers";
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
           path:'/category/:name',
           element: <PrivateRoute><ShowCategory></ShowCategory></PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/categoris/${params.name}`)
+        },
+        {
+          path:'/blog',
+          element:<Blog></Blog>
         }
       ]
     },

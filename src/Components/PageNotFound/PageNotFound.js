@@ -5,9 +5,9 @@ const PageNotFound = () => {
     return (
         <div 
         className='hero min-h-screen items-end'
-        style={{ backgroundImage: `url("https://techpulse.be/wp-content/uploads/2022/04/404.jpg")` }}
+        style={{ backgroundImage: `url("https://www.simicart.com/blog/wp-content/uploads/pwa-offline-featured-image.png")` }}
         >
-            <Link to='/' className='btn text-white mb-2'>Go Back</Link>
+            <Link to='/' className='link text-white mb-10'>Go Back</Link>
         </div>
     );
 };
