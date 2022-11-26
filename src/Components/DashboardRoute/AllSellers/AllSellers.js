@@ -33,7 +33,7 @@ const AllSellers = () => {
     }
     
     function handleVerify(email){
-        fetch(`http://localhost:5000/allproducts/${email}`,{
+        fetch(`http://localhost:5000/allproducts/verify/${email}`,{
             method:'PUT',
             headers: {
                 'content-type' : 'application/json'

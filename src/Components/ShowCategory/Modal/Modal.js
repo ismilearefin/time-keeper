@@ -13,15 +13,16 @@ const Modal = ({productInfo,setmodal}) => {
         const number = form.number.value;
         const location = form.location.value;
 
-
+console.log(productInfo)
         const BookedProduct = {
-            _id,
-            email,
+            // _id : _id,
+           buyer_email : email,
             number,
             location,
         }
+        console.log(_id)
 
-        fetch(`http://localhost:5000/allproducts/${_id}`, {
+        fetch(`http://localhost:5000/allproducts/booked/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type' : 'application/json'
@@ -30,7 +31,8 @@ const Modal = ({productInfo,setmodal}) => {
         })
         .then(res => res.json())
         .then(data => {
-            if(data.acknowledged){
+            console.log(data)
+            if(data.modifiedCount > 0){
                         toast.success('Your Product is Booked')
                     }else{
                         toast.error('Already Booked')

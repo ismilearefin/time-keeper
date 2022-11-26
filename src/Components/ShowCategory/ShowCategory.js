@@ -11,8 +11,8 @@ const ShowCategory = () => {
     const [modal, setmodal] = useState(true)
     
     function handleModal(product){
-        setProductInfo(product)
-        console.log(productInfo)
+        setProductInfo([])
+      return setProductInfo(product)
     }
 
     return (

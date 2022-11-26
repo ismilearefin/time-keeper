@@ -11,8 +11,8 @@ const Myorders = () => {
     // const queryClient = useQueryClient()
 
     const {data, isLoading}= useQuery({
-        queryKey:['allproducts', user.email],
-        queryFn: () => fetch(`http://localhost:5000/allproducts?email=${user.email}`)
+        queryKey:['allproducts', user?.email],
+        queryFn: () => fetch(`http://localhost:5000/allproducts/order?email=${user?.email}`)
         .then(res => res.json())
     })
 
@@ -61,7 +61,7 @@ console.log(data)
                                 <td>
                                 {bookedProduct.pro_name}
                                 </td>
-                                <td>$ {bookedProduct.price}</td>
+                                <td>$ {bookedProduct.resale_price}</td>
                                 <th>
                                 <button className="btn btn-info btn-xs">Pay</button>
                                 </th>
