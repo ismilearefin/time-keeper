@@ -20,9 +20,9 @@ console.log(data)
       <p className="text-4xl font-bold mb-10">
       OUR <span className="text-red-600">HOT DEALS</span>
       </p>
-      <div className="md:grid grid-cols-3 justify-center items-center my-4 gap-5 ">
+      <div className="md:grid grid-cols-3 justify-center items-center my-4 gap-10 ">
         {
-          data.map(product => <div key={product._id} className="card w-96 bg-base-100 shadow-xl rounded-none">
+          data.map(product => <div key={product._id} className="card w-80 mb-4 lg:w-96 bg-base-100 shadow-xl rounded-none">
           <figure>
             <img className="w-full h-72" src={product.img} alt="Shoes" />
           </figure>
@@ -32,9 +32,9 @@ console.log(data)
               <div className="badge badge-secondary">{product.condition}</div>
             </h2>
             <p>{product.dis}</p>
-            <div className="card-actions justify-between mt-2">
-              <div className="badge badge-outline rounded-none text-rose-700">Orginal price: ${product.orginal_price}</div>
-              <div className="badge badge-outline rounded-none text-white">Price Now : ${product.resale_price}</div>
+            <div className="card-actions justify-center  mt-2">
+              <div className="badge badge-outline w-full rounded-none text-rose-700">Orginal price: ${product.orginal_price}</div>
+              <div className="badge badge-outline w-full rounded-none text-white">Price Now : ${product.resale_price}</div>
             </div>
           </div>
         </div>)

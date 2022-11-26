@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useRef } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import Advertise from './AdvertiseSec/Advertise';
 import Categories from './Categories/Categories';
@@ -8,6 +8,12 @@ import InfoSec from './InfoSec/InfoSec';
 import PremiumSec from './PremiumSec/PremiumSec';
 
 const Home = () => {
+    const ref = useRef(null);
+
+  const handleScrollToCategory = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'});
+  };
+
     const {data , isLoading} = useQuery({
         queryKey : ['advertise'],
         queryFn : () => fetch('http://localhost:5000/allproducts/advertise')
@@ -26,7 +32,9 @@ const Home = () => {
 
     return (
         <div>
-            <Hero></Hero>
+            <Hero
+            handleScrollToCategory={handleScrollToCategory}
+            ></Hero>
             <InfoSec></InfoSec>
             {
                 data?.length > 0 && <Advertise 
@@ -34,7 +42,9 @@ const Home = () => {
                 isLoading={isLoading}
                 ></Advertise>
             }
-            <Categories></Categories>
+            <Categories
+            Scrollref={ref}
+            ></Categories>
             <PremiumSec></PremiumSec>
         </div>
     );

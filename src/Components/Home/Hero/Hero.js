@@ -1,6 +1,7 @@
 import React from "react";
 
-const Hero = () => {
+const Hero = ({handleScrollToCategory}) => {
+  
   return (
     <div
       className="hero min-h-screen bg-fixed "
@@ -13,11 +14,12 @@ const Hero = () => {
           <p className="mb-5">
             BLACK FRIDAY WEEKS CHECK OUR <span className="text-red-600">HOT DEALS</span> 
           </p>
-          <button className="btn btn-primary bg-black text-white rounded-none">SHOP NOW</button>
+          <button onClick={()=>handleScrollToCategory()} className="btn btn-primary bg-black text-white rounded-none">SHOP NOW</button>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default Hero;
