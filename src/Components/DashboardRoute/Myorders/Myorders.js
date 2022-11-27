@@ -51,7 +51,7 @@ console.log(data)
                                 <td>
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
+                                    <div className="mask w-12 h-12">
                                         <img src={bookedProduct.img} alt="Avatar Tailwind CSS Component" />
                                     </div>
                                     </div>
@@ -63,7 +63,7 @@ console.log(data)
                                 </td>
                                 <td>$ {bookedProduct.resale_price}</td>
                                 <th>
-                                <button className="btn btn-info btn-xs">Pay</button>
+                                <button className="btn btn-info btn-xs rounded-none">Pay</button>
                                 </th>
                             </tr>)
                         }

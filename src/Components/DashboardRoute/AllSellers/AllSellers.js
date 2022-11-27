@@ -71,10 +71,10 @@ const AllSellers = () => {
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
                 <td>
-                <button onClick={()=>handleDelete(seller._id)} className='btn bg-rose-800 btn-sm'>X</button>
+                <button onClick={()=>handleDelete(seller._id)} className='btn bg-rose-800 btn-sm rounded-none'>X</button>
                 </td>
                 <td>
-                <button onClick={()=>handleVerify(seller.email)} className='btn bg-sky-500 text-white btn-sm'>verify</button>
+                <button onClick={()=>handleVerify(seller.email)} className='btn bg-sky-500 text-white btn-sm rounded-none'>verify</button>
             </td>
             </tr>)
         }

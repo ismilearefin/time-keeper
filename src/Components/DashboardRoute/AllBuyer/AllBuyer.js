@@ -54,7 +54,7 @@ const AllBuyer = () => {
                         <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>
-                            <button onClick={()=>handleDelete(user._id)} className='btn bg-rose-800 btn-sm'>X</button>
+                            <button onClick={()=>handleDelete(user._id)} className='btn bg-rose-800 btn-sm rounded-none'>X</button>
                             </td>
                     </tr>)
                     }

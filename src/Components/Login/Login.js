@@ -1,13 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { Authcontext } from "../../Contextprovidor/Contextprovidor";
+// import useToken from "../../hooks/useHook";
 
 const Login = () => {
     const {login,googlesignup} = useContext(Authcontext)
     const location = useLocation()
+    // const [loginUserEmail, setLoginUserEmail] = useState('')
+    // const [token] = useToken(loginUserEmail)
     const from = location.state?.from?.pathname || '/'
     const navigate = useNavigate()
+
+
+    // if(token){
+    //     navigate(from, {replace : true});
+    // }
+
+
     function handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
@@ -22,6 +32,8 @@ const Login = () => {
                 // Signed in 
                 const user = userCredential.user;
                 toast.success(`Welcome back ${user.displayName}`)
+                // getUserToken(email)
+                // setLoginUserEmail(email)
                 navigate(from, {replace : true});
                 // ...
             })
@@ -48,6 +60,16 @@ const Login = () => {
           });
     
     }
+    // const getUserToken = email => {
+    //     fetch(`http://localhost:5000/jwt?email=${email}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         if(data.accessToken){
+    //             localStorage.setItem('accessToken', data.accessToken);
+    //             navigate(from, {replace : true});
+    //         }
+    //     })
+    // }
 
     return (
         <div>

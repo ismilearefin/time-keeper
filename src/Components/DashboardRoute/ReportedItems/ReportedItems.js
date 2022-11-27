@@ -57,7 +57,7 @@ const ReportedItems = () => {
                     <td>
                     <div className="flex items-center space-x-3">
                         <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
+                        <div className="mask  w-12 h-12">
                             <img src={product.img} alt="Avatar Tailwind CSS Component" />
                         </div>
                         </div>
@@ -68,7 +68,7 @@ const ReportedItems = () => {
                     <br/>
                     <span className="badge badge-ghost badge-sm">${product.resale_price}</span>
                     </td>
-                    <td><button onClick={()=>handleDelete(product._id)} className='btn bg-rose-800 btn-xs text-white'>X</button></td>
+                    <td><button onClick={()=>handleDelete(product._id)} className='btn bg-rose-800 btn-xs text-white rounded-none'>X</button></td>
                     
                 </tr> )
             }

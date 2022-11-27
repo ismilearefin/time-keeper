@@ -7,9 +7,14 @@ import Navbar from '../Navbar/Navbar';
 
 const DashboardRoute = () => {
     const {user} = useContext(Authcontext)
+    console.log(user)
     const {data, isLoading} = useQuery({
-        queryKey : ['users', user.email],
-        queryFn : () => fetch(`http://localhost:5000/users?email=${user.email}`)
+        queryKey : ['users', user?.email],
+        queryFn : () => fetch(`http://localhost:5000/users?email=${user?.email}`,{
+            headers: {
+                authoraization : `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res => res.json())
         
     })

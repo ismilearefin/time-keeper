@@ -4,7 +4,7 @@ import {
   } from '@tanstack/react-query'
 import { Authcontext } from '../../../Contextprovidor/Contextprovidor';
 import {RotatingLines } from  'react-loader-spinner'
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const MyProducts = () => {
@@ -12,7 +12,11 @@ const MyProducts = () => {
 
     const {data, isLoading, refetch}= useQuery({
         queryKey:['myproducts', user.email],
-        queryFn: () => fetch(`http://localhost:5000/allproducts/myproducts?email=${user.email}`)
+        queryFn: () => fetch(`http://localhost:5000/allproducts/myproducts?email=${user.email}`,{
+            headers: {
+                authoraization : `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res => res.json())
     })
 
@@ -47,6 +51,7 @@ function handleAdvertise(id){
     })
     .then(res => res.json())
     .then(data => {
+        console.log(data)
         if(data.acknowledged){
             toast.success('Advertised Mood on')
             refetch()
@@ -84,7 +89,7 @@ function handleAdvertise(id){
                     <td>
                     <div className="flex items-center space-x-3">
                         <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
+                        <div className="mask  w-12 h-12">
                             <img src={product.img} alt="Avatar Tailwind CSS Component" />
                         </div>
                         </div>
@@ -95,17 +100,18 @@ function handleAdvertise(id){
                     <br/>
                     <span className="badge badge-ghost badge-sm">${product.resale_price}</span>
                     </td>
-                    <td><button onClick={()=>handleDelete(product._id)} className='btn bg-rose-800 btn-xs text-white'>X</button></td>
+                    <td><button onClick={()=>handleDelete(product._id)} className='btn bg-rose-800 btn-xs text-white rounded-none'>X</button></td>
                     <th>
                         {
-                          !product?.status   &&  
-                           <button onClick={()=>handleAdvertise(product._id)} className="btn btn-xs text-sky-400">Advertise</button>
+                            !product?.advertise   &&  
+                            <button onClick={()=>handleAdvertise(product._id)} className="btn btn-xs text-sky-400 rounded-none">Advertise</button>
                         }
                     </th>
                 </tr> )
             }
         </tbody>
     </table>
+            <Toaster></Toaster>
         </div>
         </div>
     );

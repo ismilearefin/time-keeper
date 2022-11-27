@@ -2,10 +2,19 @@ import React, { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { Authcontext } from "../../Contextprovidor/Contextprovidor";
+// import useToken from "../../hooks/useHook";
 
 const Signup = () => {
     const {signin,updateUserProfile,googlesignup} = useContext(Authcontext)
+    // const [createdUserEmail, setCreatedUserEmail] = useState('')
+    // const [token] = useToken(createdUserEmail);
     const navigate = useNavigate()
+
+
+    // if(token){
+    //     navigate('/')
+    // }
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -22,9 +31,11 @@ const Signup = () => {
             toast.success('User Created Successfully')
             updateUserProfile(name)
             // ...
-            saveUserInfo(name,email,userRole)
+            saveUserInfo(name,user.email,userRole)
+            // setCreatedUserEmail(email);
             console.log(user)
-            
+            navigate('/');
+            // getUserToken(user.email)
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -43,6 +54,7 @@ const Signup = () => {
             const user = result.user;
             console.log(user)
             saveUserInfo(user.displayName,user.email,userRole)
+            navigate('/');
             // ...
           }).catch((error) => {
             // Handle Errors here.
@@ -68,9 +80,13 @@ const Signup = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            navigate('/')
+            
+            // getUserToken(email)
+            
         })
     }
+
+    
 
 
     return (
