@@ -4,9 +4,6 @@ import { Authcontext } from '../Contextprovidor/Contextprovidor';
 import {RotatingLines } from  'react-loader-spinner'
 
 
-
-
-
 const PrivateRoute = ({children}) => {
     const {user,loading} = useContext(Authcontext)
     const location = useLocation();

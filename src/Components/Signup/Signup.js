@@ -32,10 +32,10 @@ const Signup = () => {
             updateUserProfile(name)
             // ...
             saveUserInfo(name,user.email,userRole)
+            // getUserToken(user.email)
             // setCreatedUserEmail(email);
             console.log(user)
             navigate('/');
-            // getUserToken(user.email)
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -86,7 +86,16 @@ const Signup = () => {
         })
     }
 
-    
+    // function getUserToken(email){
+    //     fetch(`http://localhost:5000/jwt?email=${email}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         if(data.accessToken){
+    //             localStorage.setItem('accessToken', data.accessToken);
+    //             navigate('/');
+    //         }
+    //     });
+    // }
 
 
     return (

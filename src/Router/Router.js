@@ -5,6 +5,7 @@ import AllBuyer from "../Components/DashboardRoute/AllBuyer/AllBuyer";
 import AllSellers from "../Components/DashboardRoute/AllSellers/AllSellers";
 import DashboardRoute from "../Components/DashboardRoute/DashboardRoute";
 import Myorders from "../Components/DashboardRoute/Myorders/Myorders";
+import Payment from "../Components/DashboardRoute/Myorders/Payment/Payment";
 import MyProducts from "../Components/DashboardRoute/MyProducts/MyProducts";
 import ReportedItems from "../Components/DashboardRoute/ReportedItems/ReportedItems";
 import Home from "../Components/Home/Home";
@@ -13,6 +14,7 @@ import MainRoute from "../Components/MainRoute/MainRoute";
 import PageNotFound from "../Components/PageNotFound/PageNotFound";
 import ShowCategory from "../Components/ShowCategory/ShowCategory";
 import Signup from "../Components/Signup/Signup";
+import DisplayError from "../DisplayError/DisplayError";
 import AdminPrivateRoute from "../PrivateRoute/AdminPrivateRoute/AdminPrivateRoute";
 import BuyerPrivateRoute from "../PrivateRoute/BuyerPrivateRoute/BuyerPrivateRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -23,6 +25,7 @@ export const router = createBrowserRouter([
     {
       path: "/",
       element: <MainRoute></MainRoute>,
+      errorElement: <DisplayError></DisplayError>,
       children:[
         {
             path:'/',
@@ -50,10 +53,16 @@ export const router = createBrowserRouter([
     {
       path : '/dasboard',
       element: <PrivateRoute><DashboardRoute></DashboardRoute></PrivateRoute>,
+      errorElement: <DisplayError></DisplayError>,
       children:[
         {
           path: '/dasboard/myorder',
           element:<BuyerPrivateRoute><Myorders></Myorders></BuyerPrivateRoute>
+        },
+        {
+          path:'/dasboard/payment/:id',
+          element:<BuyerPrivateRoute><Payment></Payment></BuyerPrivateRoute>,
+          loader:({params}) => fetch(`http://localhost:5000/allproducts/payment/${params.id}`)
         },
         {
           path: '/dasboard/addproduct',

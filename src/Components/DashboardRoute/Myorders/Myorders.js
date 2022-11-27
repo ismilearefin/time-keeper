@@ -4,6 +4,7 @@ import {
   } from '@tanstack/react-query'
 import { Authcontext } from '../../../Contextprovidor/Contextprovidor';
 import {RotatingLines } from  'react-loader-spinner'
+import { Link } from 'react-router-dom';
 
 
 const Myorders = () => {
@@ -63,7 +64,7 @@ console.log(data)
                                 </td>
                                 <td>$ {bookedProduct.resale_price}</td>
                                 <th>
-                                <button className="btn btn-info btn-xs rounded-none">Pay</button>
+                                <Link to={`/dasboard/payment/${bookedProduct._id}`} className="btn btn-info btn-xs rounded-none">Pay</Link>
                                 </th>
                             </tr>)
                         }

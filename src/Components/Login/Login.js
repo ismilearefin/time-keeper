@@ -60,7 +60,7 @@ const Login = () => {
           });
     
     }
-    // const getUserToken = email => {
+    // function getUserToken(email){
     //     fetch(`http://localhost:5000/jwt?email=${email}`)
     //     .then(res => res.json())
     //     .then(data => {
@@ -68,7 +68,7 @@ const Login = () => {
     //             localStorage.setItem('accessToken', data.accessToken);
     //             navigate(from, {replace : true});
     //         }
-    //     })
+    //     });
     // }
 
     return (
