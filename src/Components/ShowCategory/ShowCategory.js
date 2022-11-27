@@ -1,14 +1,27 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import toast, { Toaster } from 'react-hot-toast';
 import { FaCheckCircle } from "react-icons/fa";
+import { RotatingLines } from "react-loader-spinner";
 
 
 const ShowCategory = () => {
+    const navigation = useNavigation();
     const products = useLoaderData();
     const [productInfo , setProductInfo] = useState([])
     const [modal, setmodal] = useState(true)
+
+    if(navigation.state === 'loading'){
+        return (<div className='flex justify-center items-center min-h-screen'><RotatingLines
+        strokeColor="white"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+        /></div>)
+    }
+
     
     function handleModal(product){
         setProductInfo([])

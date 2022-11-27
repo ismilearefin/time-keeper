@@ -7,7 +7,7 @@ import Navbar from '../Navbar/Navbar';
 
 const DashboardRoute = () => {
     const {user} = useContext(Authcontext)
-    console.log(user)
+    // console.log(user)
     const {data, isLoading} = useQuery({
         queryKey : ['users', user?.email],
         queryFn : () => fetch(`http://localhost:5000/users?email=${user?.email}`,{
@@ -22,7 +22,7 @@ const DashboardRoute = () => {
     if(isLoading){
         return <p>Loading.....</p>
     }
-console.log(data)
+// console.log(data)
 
     return (
         <div>

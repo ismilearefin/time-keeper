@@ -9,7 +9,7 @@ const Navbar = () => {
     return  logout()
   }
 
-console.log(user)
+// console.log(user)
 
   return (
     <div className="navbar bg-base-100">

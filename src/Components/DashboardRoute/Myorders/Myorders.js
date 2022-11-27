@@ -64,7 +64,9 @@ console.log(data)
                                 </td>
                                 <td>$ {bookedProduct.resale_price}</td>
                                 <th>
-                                <Link to={`/dasboard/payment/${bookedProduct._id}`} className="btn btn-info btn-xs rounded-none">Pay</Link>
+                                {bookedProduct.paid ? 
+                                <p className='text-green-500'>Paid</p> :
+                                <Link to={`/dasboard/payment/${bookedProduct._id}`} className="btn btn-info btn-xs rounded-none">Pay</Link>}
                                 </th>
                             </tr>)
                         }
