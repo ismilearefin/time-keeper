@@ -30,7 +30,11 @@ const Advertise = ({data, isLoading}) => {
               {product.pro_name}
               <div className="badge badge-secondary">{product.condition}</div>
             </h2>
-            <p>{product.dis}</p>
+            <p>
+            {product?.dis.length > 29
+                    ? product.dis.slice(0, 28) + "..."
+                    : product.dis}
+            </p>
             <div className="card-actions justify-center  mt-2">
               <div className="badge badge-outline w-full rounded-none text-rose-700">Orginal price: ${product.orginal_price}</div>
               <div className="badge badge-outline w-full rounded-none text-white">Price Now : ${product.resale_price}</div>

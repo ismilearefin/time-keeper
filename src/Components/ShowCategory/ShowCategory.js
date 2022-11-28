@@ -81,8 +81,8 @@ const ShowCategory = () => {
                   </div>
                 </h2>
                 <p>
-                  {product?.dis.length > 40
-                    ? product.dis.slice(0, 39) + "..."
+                {product?.dis.length > 29
+                    ? product.dis.slice(0, 28) + "..."
                     : product.dis}
                 </p>
                 <div className="card-actions justify-between">

@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import Advertise from "./AdvertiseSec/Advertise";
 import Categories from "./Categories/Categories";
+import Gellary from "./Gellary/Gellary";
 import Hero from "./Hero/Hero";
 import InfoSec from "./InfoSec/InfoSec";
 import PremiumSec from "./PremiumSec/PremiumSec";
@@ -34,15 +35,16 @@ const Home = () => {
       </div>
     );
   }
-  
+
   return (
     <div>
       <Hero handleScrollToCategory={handleScrollToCategory}></Hero>
       <InfoSec></InfoSec>
+      <Gellary></Gellary>
+      <Categories Scrollref={ref}></Categories>
       {data?.length > 0 && (
         <Advertise data={data} isLoading={isLoading}></Advertise>
       )}
-      <Categories Scrollref={ref}></Categories>
       <PremiumSec></PremiumSec>
     </div>
   );

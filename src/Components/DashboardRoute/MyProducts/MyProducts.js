@@ -80,7 +80,7 @@ const MyProducts = () => {
               <tr key={product._id}>
                 <th>
                   {product?.status ? (
-                    <p className="text-rose-600">Sold</p>
+                    <p className="text-rose-600">Booked</p>
                   ) : (
                     <p className="text-green-600">Available</p>
                   )}
