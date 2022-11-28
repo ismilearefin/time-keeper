@@ -2,7 +2,7 @@
 
 adminEmail: <ismilearefin@gmail.com>
 
-adminPassword: <123456>
+adminPassword: 123456
 
 Live Site : [TimeKeeper](https://timekeeper-217e1.web.app/)
 

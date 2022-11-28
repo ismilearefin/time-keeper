@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { RotatingLines } from "react-loader-spinner";
 
 const ReportedItems = () => {
   const { data, isLoading, refetch } = useQuery({
@@ -10,10 +11,17 @@ const ReportedItems = () => {
         (res) => res.json()
       ),
   });
+
+  
   if (isLoading) {
-    return <p>Loading..</p>;
+    return (<div className='flex justify-center items-center min-h-screen'><RotatingLines
+    strokeColor="white"
+    strokeWidth="5"
+    animationDuration="0.75"
+    width="96"
+    visible={true}
+    /></div>)
   }
-  console.log(data);
 
   function handleDelete(_id) {
     fetch(`https://timekeeper-server.vercel.app/allproducts/${_id}`, {
@@ -49,7 +57,7 @@ const ReportedItems = () => {
               <tr key={product._id}>
                 <th>
                   {product?.status ? (
-                    <p className="text-rose-600">Sold</p>
+                      <p className="text-rose-600">Booked</p>
                   ) : (
                     <p className="text-green-600">Available</p>
                   )}

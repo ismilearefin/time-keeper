@@ -13,7 +13,6 @@ const Advertise = ({data, isLoading}) => {
     visible={true}
     /></div>)
   }
-    console.log(data)
 
 
   return (
@@ -21,7 +20,7 @@ const Advertise = ({data, isLoading}) => {
       <p className="text-4xl font-bold my-10">
       OUR <span className="text-red-600">HOT DEALS</span>
       </p>
-      <div className="md:grid grid-cols-3 justify-center items-center my-4 gap-10 ">
+      <div className="text-center grid md:grid-cols-3 justify-center items-center my-4 gap-10 ">
         {
           data.map(product => <div key={product._id} className="card w-80 mb-4 lg:w-96 bg-base-100 shadow-xl rounded-none">
           <figure>
