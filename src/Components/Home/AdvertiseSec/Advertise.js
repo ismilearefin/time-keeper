@@ -13,10 +13,12 @@ const Advertise = ({data, isLoading}) => {
     visible={true}
     /></div>)
   }
-    
+    console.log(data)
+
+
   return (
-    <div className="bg-white min-h-screen flex flex-col justify-center items-center">
-      <p className="text-4xl font-bold mb-10">
+    <div style={{'backgroundColor': '#FFFAFA'}} className=" min-h-screen flex flex-col justify-center items-center">
+      <p className="text-4xl font-bold my-10">
       OUR <span className="text-red-600">HOT DEALS</span>
       </p>
       <div className="md:grid grid-cols-3 justify-center items-center my-4 gap-10 ">

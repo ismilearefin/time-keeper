@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useRef } from "react";
+import React, {useRef} from "react";
 import { RotatingLines } from "react-loader-spinner";
 import Advertise from "./AdvertiseSec/Advertise";
 import Categories from "./Categories/Categories";
@@ -10,7 +10,6 @@ import PremiumSec from "./PremiumSec/PremiumSec";
 
 const Home = () => {
   const ref = useRef(null);
-
   const handleScrollToCategory = () => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -18,9 +17,11 @@ const Home = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["advertise"],
     queryFn: () =>
-      fetch("https://timekeeper-server.vercel.app/allproducts/advertise")
-      .then((res) => res.json()),
-  });
+        fetch("https://timekeeper-server.vercel.app/allproducts/advertise")
+        .then(res=> res.json())
+    }
+  );
+
 
   if (isLoading) {
     return (
