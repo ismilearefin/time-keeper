@@ -1,9 +1,8 @@
-// import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { RotatingLines } from "react-loader-spinner";
 
 const Advertise = ({data, isLoading}) => {
- 
+
 
   if(isLoading){
     return (<div className='flex justify-center items-center min-h-screen'><RotatingLines
@@ -14,8 +13,8 @@ const Advertise = ({data, isLoading}) => {
     visible={true}
     /></div>)
   }
-console.log(data)
-    return (
+    
+  return (
     <div className="bg-white min-h-screen flex flex-col justify-center items-center">
       <p className="text-4xl font-bold mb-10">
       OUR <span className="text-red-600">HOT DEALS</span>
@@ -39,8 +38,6 @@ console.log(data)
           </div>
         </div>)
         }
-        
-        
       </div>
     </div>
     );

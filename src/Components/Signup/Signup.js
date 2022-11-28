@@ -5,162 +5,153 @@ import { Authcontext } from "../../Contextprovidor/Contextprovidor";
 // import useToken from "../../hooks/useHook";
 
 const Signup = () => {
-    const {signin,updateUserProfile,googlesignup} = useContext(Authcontext)
-    // const [createdUserEmail, setCreatedUserEmail] = useState('')
-    // const [token] = useToken(createdUserEmail);
-    const navigate = useNavigate()
+  const { signin, updateUserProfile, googlesignup } = useContext(Authcontext);
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const userRole = form.userRole.value;
+    const name = form.name.value;
+    const password = form.password.value;
+    console.log(email, userRole, name, password);
+    signin(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        toast.success("User Created Successfully");
+        updateUserProfile(name);
+        // ...
+        saveUserInfo(name, user.email, userRole);
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+        // console.log(errorMessage)
+        // ..
+      });
+  }
+
+  function handleGoogleSignup(userRole = "Buyer") {
+    googlesignup()
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        // The signed-in user info.
+        const user = result.user;
+        console.log(user);
+        saveUserInfo(user.displayName, user.email, userRole);
+        navigate("/");
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
+  }
+
+  const saveUserInfo = (name, email, userRole) => {
+    const userInfo = {
+      name,
+      email,
+      userRole,
+    };
+    fetch("https://timekeeper-server.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
 
-    // if(token){
-    //     navigate('/')
-    // }
-
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const userRole = form.userRole.value;
-        const name = form.name.value;
-        const password = form.password.value;
-        console.log(email, userRole,name,password);
-        signin(email,password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            toast.success('User Created Successfully')
-            updateUserProfile(name)
-            // ...
-            saveUserInfo(name,user.email,userRole)
-            // getUserToken(user.email)
-            // setCreatedUserEmail(email);
-            console.log(user)
-            navigate('/');
-          })
-          .catch((error) => {
-            const errorMessage = error.message;
-            toast.error(errorMessage)
-            // console.log(errorMessage)
-            // ..
-          });
-    }
-
-    function handleGoogleSignup( userRole='Buyer'){
-
-        googlesignup()
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            // The signed-in user info.
-            const user = result.user;
-            console.log(user)
-            saveUserInfo(user.displayName,user.email,userRole)
-            navigate('/');
-            // ...
-          }).catch((error) => {
-            // Handle Errors here.
-            const errorMessage = error.message;
-            toast.error(errorMessage)
-          });
-    }
-
-
-    const saveUserInfo =(name, email, userRole)=>{
-        const userInfo = {
-            name, 
-            email, 
-            userRole
-        }
-        fetch('http://localhost:5000/users',{
-            method: 'POST',
-            headers:{
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            
-            // getUserToken(email)
-            
-        })
-    }
-
-    // function getUserToken(email){
-    //     fetch(`http://localhost:5000/jwt?email=${email}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         if(data.accessToken){
-    //             localStorage.setItem('accessToken', data.accessToken);
-    //             navigate('/');
-    //         }
-    //     });
-    // }
-
-
-    return (
-        <div>
-        <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="card flex-shrink-0 w-80 lg:w-96 shadow-2xl bg-base-100">
-                <form onSubmit={(e) => handleSubmit(e)} className="card-body">
-                <div className="form-control">
-                    <label className="label">
-                    <span className="label-text">User Name</span>
-                    </label>
-                    <input
-                    type="text"
-                    placeholder="Full name"
-                    name="name"
-                    className="input input-bordered"
-                    />
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                    <span className="label-text">Email</span>
-                    </label>
-                    <input
-                    type="email"
-                    placeholder="email"
-                    name="email"
-                    className="input input-bordered"
-                    />
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                    <span className="label-text">Password</span>
-                    </label>
-                    <input
-                    type="password"
-                    placeholder="password"
-                    name="password"
-                    className="input input-bordered"
-                    />
-                    <label className="label"></label>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                    <span className="label-text">Sign-up as..</span>
-                    </label>
-                    <select name="userRole" className="select select-bordered w-full max-w-xs">
-                    <option disabled selected>Your role ?</option>
-                    <option value="Buyer">Buyer</option>
-                    <option value="Seller">Seller</option>
-                    </select>
-                    <label className="label"><span>Already have an account <Link to='/login' className="link">Login</Link></span></label>
-
-                </div>
-                <div className="form-control mt-6">
-                    <button className="btn btn-primary">Sign Up</button>
-                </div>
-                </form>
-                <button onClick={()=>handleGoogleSignup()} className="btn btn-primary">Google</button>
-            </div>
-            </div>
-            <Toaster></Toaster>
+  return (
+    <div>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="card flex-shrink-0 w-80 lg:w-96 shadow-2xl bg-base-100">
+            <form onSubmit={(e) => handleSubmit(e)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">User Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Full name"
+                  name="name"
+                  className="input input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="email"
+                  name="email"
+                  className="input input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="password"
+                  name="password"
+                  className="input input-bordered"
+                />
+                <label className="label"></label>
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Sign-up as..</span>
+                </label>
+                <select
+                  name="userRole"
+                  className="select select-bordered w-full max-w-xs"
+                >
+                  <option disabled selected>
+                    Your role ?
+                  </option>
+                  <option value="Buyer">Buyer</option>
+                  <option value="Seller">Seller</option>
+                </select>
+                <label className="label">
+                  <span>
+                    Already have an account{" "}
+                    <Link to="/login" className="link">
+                      Login
+                    </Link>
+                  </span>
+                </label>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn btn-primary">Sign Up</button>
+              </div>
+            </form>
+            <button
+              onClick={() => handleGoogleSignup()}
+              className="btn btn-primary"
+            >
+              Google
+            </button>
+          </div>
         </div>
-        </div>
-    );
+        <Toaster></Toaster>
+      </div>
+    </div>
+  );
 };
 
 export default Signup;

@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         {
           path:'/category/:name',
           element: <PrivateRoute><ShowCategory></ShowCategory></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:5000/categoris/${params.name}`)
+          loader: ({params}) => fetch(`https://timekeeper-server.vercel.app/categoris/${params.name}`)
         },
         {
           path:'/blog',
@@ -62,7 +62,7 @@ export const router = createBrowserRouter([
         {
           path:'/dasboard/payment/:id',
           element:<BuyerPrivateRoute><Payment></Payment></BuyerPrivateRoute>,
-          loader:({params}) => fetch(`http://localhost:5000/allproducts/payment/${params.id}`)
+          loader:({params}) => fetch(`https://timekeeper-server.vercel.app/allproducts/payment/${params.id}`)
         },
         {
           path: '/dasboard/addproduct',

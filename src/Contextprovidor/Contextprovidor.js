@@ -50,7 +50,6 @@ const Contextprovidor = ({children}) => {
     function logout(){
         signOut(auth).then(() => {
             // Sign-out successful.
-            // alert('logout sucessfully')
           }).catch((error) => {
             // An error happened.
           });
