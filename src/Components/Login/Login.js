@@ -32,13 +32,14 @@ const Login = () => {
       });
   }
 
-  function handleGooglesignUp() {
+  function handleGooglesignUp(userRole = "Buyer") {
     googlesignup()
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         // The signed-in user info.
         const user = result.user;
         console.log(user)
+        saveUserInfo(user.displayName, user.email, userRole);
         navigate(from, { replace: true });
         // ...
       })
@@ -49,6 +50,25 @@ const Login = () => {
       });
   }
   
+  const saveUserInfo = (name, email, userRole) => {
+    const userInfo = {
+      name,
+      email,
+      userRole,
+    };
+    fetch("https://timekeeper-server.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
 
   return (
     <div>
