@@ -32,15 +32,15 @@ const Login = () => {
       });
   }
 
-  function handleGooglesignUp(userRole = "Buyer") {
+  function handleGoogleSignup(userRole = "Buyer") {
     googlesignup()
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         // The signed-in user info.
         const user = result.user;
-        console.log(user)
+        console.log(user);
         saveUserInfo(user.displayName, user.email, userRole);
-        navigate(from, { replace: true });
+        navigate("/");
         // ...
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ const Login = () => {
         toast.error(errorMessage);
       });
   }
-  
+
   const saveUserInfo = (name, email, userRole) => {
     const userInfo = {
       name,
@@ -68,6 +68,7 @@ const Login = () => {
         console.log(data);
       });
   };
+
 
 
   return (
@@ -126,7 +127,7 @@ const Login = () => {
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
-            <button onClick={handleGooglesignUp} className="btn btn-primary">
+            <button onClick={()=>handleGoogleSignup()} className="btn btn-primary">
               Google
             </button>
           </div>
