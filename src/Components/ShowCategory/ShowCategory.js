@@ -71,7 +71,7 @@ const ShowCategory = () => {
                 <p>{product?.date}</p>
               </div>
               <figure>
-                <img className="w-full h-72" src={product?.img} alt="Shoes" />
+                <img className="w-full h-72 hover:shadow-lg hover:scale-105 transition duration-500 ease-in-out" src={product?.img} alt="Shoes" />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">

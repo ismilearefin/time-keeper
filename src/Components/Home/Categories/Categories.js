@@ -46,7 +46,7 @@ const Categories = ({ Scrollref }) => {
           OUR CATEGORIES
         </h1>
       </div>
-      <div className="md:w-1/2 min-h-screen grid md:grid-cols-2">
+      <div className=" md:w-1/2 min-h-screen grid md:grid-cols-2 ">
         {data?.map((Category, i) => (
           <Link
             style={{
@@ -55,7 +55,7 @@ const Categories = ({ Scrollref }) => {
             }}
             to={`/category/${Category.Category}`}
             key={i}
-            className="h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-2xl  hover:text-white"
+            className="transform transition duration-500 hover:scale-110 hover:border-white hover:z-10 h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-2xl  hover:text-white"
           >
             {Category.Category}
           </Link>
