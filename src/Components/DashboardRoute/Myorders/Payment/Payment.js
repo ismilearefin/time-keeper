@@ -5,7 +5,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { useLoaderData, useNavigation } from "react-router-dom";
 import CheckOutForm from "./CheckOutForm";
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
+const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PK}`);
 
 const Payment = () => {
     const data = useLoaderData();
