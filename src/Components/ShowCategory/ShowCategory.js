@@ -48,7 +48,7 @@ const ShowCategory = () => {
       });
   }
 
-  console.log(products);
+  
   return (
     <div className="bg-white">
       <h1 className="text-4xl font-light text-center pt-10">
@@ -71,7 +71,11 @@ const ShowCategory = () => {
                 <p>{product?.date}</p>
               </div>
               <figure>
-                <img className="w-full h-72 hover:shadow-lg hover:scale-105 transition duration-500 ease-in-out" src={product?.img} alt="Shoes" />
+                <img
+                  className="w-full h-72 hover:shadow-lg hover:scale-110 transition duration-500 ease-in-out"
+                  src={product?.img}
+                  alt="Shoes"
+                />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">
@@ -81,38 +85,40 @@ const ShowCategory = () => {
                   </div>
                 </h2>
                 <p>
-                {product?.dis.length > 29
+                  {product?.dis.length > 29
                     ? product.dis.slice(0, 28) + "..."
                     : product.dis}
                 </p>
-                <div className="card-actions justify-between">
-                  <div className="badge w-full rounded-none">
-                    Orginal Price : {product?.orginal_price}{" "}
+                <div>
+                  <div className="card-actions justify-between">
+                    <div className="badge w-full rounded-none">
+                      Orginal Price : {product?.orginal_price}{" "}
+                    </div>
+                    <div className="badge  w-full rounded-none">
+                      Resale Price : {product?.resale_price}{" "}
+                    </div>
+                    <div className="badge  w-full rounded-none">
+                      Year of use : {product?.year_of_use}{" "}
+                    </div>
+                    <div className="badge  w-full rounded-none">
+                      Location : {product?.location}{" "}
+                    </div>
+                    <label
+                      htmlFor="my-modal-3"
+                      onClick={() => handleModal(product)}
+                      className={
+                        "btn btn-primary btn-sm hover:text-black bg-black text-white rounded-none w-full"
+                      }
+                    >
+                      {product?.status ? product.status : "BOOK NOW"}
+                    </label>
+                    <button
+                      onClick={() => handleReportedItems(product._id)}
+                      className="link text-rose-600 text-sm"
+                    >
+                      Report
+                    </button>
                   </div>
-                  <div className="badge  w-full rounded-none">
-                    Resale Price : {product?.resale_price}{" "}
-                  </div>
-                  <div className="badge  w-full rounded-none">
-                    Year of use : {product?.year_of_use}{" "}
-                  </div>
-                  <div className="badge  w-full rounded-none">
-                    Location : {product?.location}{" "}
-                  </div>
-                  <label
-                    htmlFor="my-modal-3"
-                    onClick={() => handleModal(product)}
-                    className={
-                      "btn btn-primary btn-sm  bg-black text-white rounded-none w-full"
-                    }
-                  >
-                    {product?.status ? product.status : "BOOK NOW"}
-                  </label>
-                  <button
-                    onClick={() => handleReportedItems(product._id)}
-                    className="link text-rose-600 text-sm"
-                  >
-                    Report
-                  </button>
                 </div>
               </div>
               <Toaster />

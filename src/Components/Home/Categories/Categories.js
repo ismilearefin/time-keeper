@@ -48,22 +48,23 @@ const Categories = ({ Scrollref }) => {
       </div>
       <div className=" md:w-1/2 min-h-screen grid md:grid-cols-2 ">
         {data?.map((Category, i) => (
-          <div
+          <Link
           key={i}
+          to={`/category/${Category.Category}`}
           className="transform transition duration-500  hover:border-white hover:z-10 h-full border-2 border-zinc-800 text-center grid font-light justify-center items-center text-3xl  hover:text-white"
           >
-            <Link
+            <p
             style={{
                  background:
                    "radial-gradient(circle,rgba(23, 19, 10, 0.8) 0%, rgba(255, 255, 255, 0.01) 100%)",
                }}
-            to={`/category/${Category.Category}`}
             
-            className="w-52 py-3"
+            
+            className="w-52 py-3 hover:scale-x-125 transition duration-500 ease-in-out"
           >
             {Category.Category}
+          </p>
           </Link>
-          </div>
         ))}
       </div>
     </div>
